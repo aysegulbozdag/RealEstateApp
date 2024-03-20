@@ -13,5 +13,5 @@ import dagger.hilt.android.scopes.ViewModelScoped
 abstract class RepositoryModule {
     @Binds
     @ViewModelScoped
-    abstract fun bindPokeRepository(pokeRepositoryImpl: RealEstateRepositoryImpl): RealEstateRepository
+    abstract fun bindDataRepository(realEstateRepository: RealEstateRepositoryImpl): RealEstateRepository
 }

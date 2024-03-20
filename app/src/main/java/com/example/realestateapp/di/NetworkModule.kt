@@ -15,7 +15,7 @@ object NetworkModule {
 
     @Provides
     @ViewModelScoped
-    fun provideUserInvoiceApi(): RealEstateApi {
+    fun provideRealEstateApi(): RealEstateApi {
         return Retrofit.Builder()
             .baseUrl("https://raw.githubusercontent.com/ofarukcelik/ofarukcelik/master/")
             .addConverterFactory(GsonConverterFactory.create())

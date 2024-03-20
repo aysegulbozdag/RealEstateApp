@@ -1,8 +1,5 @@
 package com.example.realestateapp.ui.detail
 
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.realestateapp.R

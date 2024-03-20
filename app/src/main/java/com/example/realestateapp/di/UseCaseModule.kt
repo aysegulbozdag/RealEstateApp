@@ -13,6 +13,6 @@ import dagger.hilt.android.scopes.ViewModelScoped
 abstract class UseCaseModule {
     @Binds
     @ViewModelScoped
-    abstract fun bindGetPhotoUseCase(photoListUseCaseImpl: GetHouseListUseCaseImpl): HouseListUseCase
+    abstract fun bindGetHouseListUseCase(getHouseListUseCaseImpl: GetHouseListUseCaseImpl): HouseListUseCase
 
 }

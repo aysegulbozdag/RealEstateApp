@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class MainFragment() : BaseFragment<FragmentMainBinding, ViewModel>() {
+class MainFragment : BaseFragment<FragmentMainBinding, ViewModel>() {
     override fun getLayoutId(): Int = R.layout.fragment_main
 
     override val viewModel: MainViewModel by viewModels()
@@ -89,13 +89,10 @@ class MainFragment() : BaseFragment<FragmentMainBinding, ViewModel>() {
                     }
 
                     is NetworkResponseState.Error -> {
-                        //showProgress()
                         hideProgress()
                         Toast.makeText(requireContext(), it.exception, Toast.LENGTH_LONG)
                             .show()
                     }
-
-                    else -> Unit
                 }
             }
         }

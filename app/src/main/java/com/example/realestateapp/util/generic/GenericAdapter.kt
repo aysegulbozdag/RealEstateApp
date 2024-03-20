@@ -1,16 +1,15 @@
 package com.example.realestateapp.util.generic
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
-import com.example.realestateapp.BR
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.realestateapp.BR
 import com.example.realestateapp.util.base.BaseDiffUtilItemCallback
 
 
@@ -52,9 +51,5 @@ class ViewHolder<T : Any>(
 
     fun onClick(block: (item: T) -> Unit) {
         binding.root.setOnClickListener { block.invoke(item) }
-    }
-
-    fun onClick(view: View, block: (item: T) -> Unit) {
-        view.setOnClickListener { block.invoke(item) }
     }
 }

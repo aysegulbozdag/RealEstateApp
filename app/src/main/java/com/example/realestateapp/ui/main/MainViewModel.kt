@@ -20,12 +20,13 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val useCase: HouseListUseCase) : ViewModel() {
 
     private var _listState: MutableStateFlow<NetworkResponseState<HouseList>> =
-        MutableStateFlow(NetworkResponseState.Empty)
-    val listState : StateFlow<NetworkResponseState<HouseList>> = _listState.asStateFlow()
+        MutableStateFlow(NetworkResponseState.Loading)
+    val listState: StateFlow<NetworkResponseState<HouseList>> = _listState.asStateFlow()
 
     init {
         getHouseList()
     }
+
     private fun getHouseList() {
         viewModelScope.launch {
             useCase.invoke().collect {
@@ -35,4 +36,10 @@ class MainViewModel @Inject constructor(private val useCase: HouseListUseCase) :
             }
         }
     }
+
+    fun searchList(query: String, dataList: List<Data>): List<Data> =
+        dataList.filter { item ->
+            item.category.contains(query, ignoreCase = true)
+        }
+
 }

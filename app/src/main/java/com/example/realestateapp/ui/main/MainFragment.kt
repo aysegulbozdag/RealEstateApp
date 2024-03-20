@@ -1,6 +1,8 @@
 package com.example.realestateapp.ui.main
 
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -16,11 +18,13 @@ import com.example.realestateapp.util.generic.GenericAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+
 @AndroidEntryPoint
 class MainFragment() : BaseFragment<FragmentMainBinding, ViewModel>() {
     override fun getLayoutId(): Int = R.layout.fragment_main
 
     override val viewModel: MainViewModel by viewModels()
+    private var dataList = mutableListOf<Data>()
 
     private val adapter by lazy {
         GenericAdapter(
@@ -37,6 +41,37 @@ class MainFragment() : BaseFragment<FragmentMainBinding, ViewModel>() {
 
     override fun onFragmentStarted() {
         observeUIState()
+        onTextChanged()
+
+    }
+
+    private fun initAdapter(data: List<Data>) = with(getDataBinding()) {
+        rvHouseList.adapter = adapter
+        adapter.submitList(data)
+    }
+
+    private fun onTextChanged() = with(getDataBinding()) {
+        etSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.toString().equals("").not()) {
+                    updateRecyclerView(s.toString())
+                } else initAdapter(dataList)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+    }
+
+    fun updateRecyclerView(query: String) {
+        val filteredList = viewModel.searchList(query, dataList)
+        initAdapter(filteredList)
     }
 
 
@@ -46,8 +81,10 @@ class MainFragment() : BaseFragment<FragmentMainBinding, ViewModel>() {
                 when (it) {
                     is NetworkResponseState.Loading -> showProgress()
                     is NetworkResponseState.Success -> {
-                        getDataBinding().rvHouseList.adapter = adapter
-                        adapter.submitList(it.result?.data)
+                        it.result?.data?.let {
+                            dataList.addAll(it.toMutableList())
+                            initAdapter(it)
+                        }
                         hideProgress()
                     }
 

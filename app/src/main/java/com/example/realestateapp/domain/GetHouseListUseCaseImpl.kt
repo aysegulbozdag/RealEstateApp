@@ -19,8 +19,6 @@ class GetHouseListUseCaseImpl @Inject constructor(private val realEstateReposito
                     response.result
                 )
             )
-
-            NetworkResponseState.Empty -> Unit
         }
     }
 }

@@ -38,14 +38,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:hint="Beykoz da ara"
+                android:hint="İstanbul, Beykoz"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:maxLines="1"
                 android:paddingVertical="8dp"
-                android:paddingEnd="8dp"
+                android:paddingHorizontal="8dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/gray"
+                android:textColorHint="@color/colorPrimaryText"
                 android:textSize="15sp" />
 
 
@@ -53,8 +53,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/bg_new_design_edittext"
             android:padding="5dp"

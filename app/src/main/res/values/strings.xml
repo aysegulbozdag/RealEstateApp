@@ -3,5 +3,12 @@
     <string name="loading_data_from_remote">Please wait...</string>
     <string name="formatted_field_text">%s m2</string>
     <string name="formatted_price">%s₺</string>
+    <string name="room_count">Oda Sayısı</string>
+    <string name="net_field">Net Alan</string>
+    <string name="building_age">Bina Yaşı</string>
+    <string name="gross_alan">Brüt Alan</string>
+    <string name="All_features">Tüm özellikler</string>
+    <string name="review">İncele</string>
+    <string name="description">Açıklama</string>
 
 </resources>

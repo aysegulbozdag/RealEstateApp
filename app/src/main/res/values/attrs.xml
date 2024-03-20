@@ -2,8 +2,7 @@
 <resources>
     
     <declare-styleable name="CustomComponent">
-        <attr name="district" format="string"/>
-        <attr name="price" format="string"/>
+
     
 
     </declare-styleable>

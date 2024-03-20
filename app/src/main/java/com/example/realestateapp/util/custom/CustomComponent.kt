@@ -21,24 +21,16 @@ class CustomComponent @JvmOverloads constructor(
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         binding = CustomComponentBinding.inflate(inflater)
         addView(binding.root)
-
-        val attrs = context.obtainStyledAttributes(attributes, R.styleable.CustomComponent)
-        binding.apply {
-            txtAdress.text = attrs.getString(R.styleable.CustomComponent_district)
-
-
-           //  executePendingBindings()
-        }
-        attrs.recycle()
     }
 
-    fun setModel(model: Data){
-        binding.txtAdress.text = model.district
-        binding.txtPrice.text = model.price
-    }
-    private fun readHouseListFromResource(resId: Int): List<String> {
-        val houseArray = resources.getStringArray(resId)
+    fun setData(model: Data) = with(binding){
+        "${model.city}/${model.district}/${model.neighborhood}".also { txtAdress.text = it }
+        " ${ model.price }₺".also { txtPrice.text = it }
+        txtCreatedDate.text = model.createdDate
+        txtBath.text = model.bathCount.toString()
+        txtRoom.text=model.roomCount.toString()
+        "${model.gross} brüt m2".also { txtGross.text = it }
+        "${model.net} net m2".also { txtNet.text = it }
 
-        return houseArray.toList()
     }
 }

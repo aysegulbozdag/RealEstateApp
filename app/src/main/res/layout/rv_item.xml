@@ -15,7 +15,6 @@
         <com.example.realestateapp.util.custom.CustomComponent
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            app:district="deneme"
             app:setModel="@{viewData}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

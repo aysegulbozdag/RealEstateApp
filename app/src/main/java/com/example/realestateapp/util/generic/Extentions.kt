@@ -5,4 +5,4 @@ import com.example.realestateapp.data.model.Data
 import com.example.realestateapp.util.custom.CustomComponent
 
 @BindingAdapter("app:setModel")
-fun CustomComponent.setModel(model: Data) = setModel(model)
+fun CustomComponent.setModel(model: Data) = setData(model)

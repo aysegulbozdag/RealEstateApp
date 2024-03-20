@@ -46,6 +46,7 @@ class MainFragment() : BaseFragment<FragmentMainBinding, ViewModel>() {
                 when (it) {
                     is NetworkResponseState.Loading -> showProgress()
                     is NetworkResponseState.Success -> {
+                        hideProgress()
                         getDataBinding().rvHouseList.adapter = adapter
                         adapter.submitList(it.result?.data)
                     }

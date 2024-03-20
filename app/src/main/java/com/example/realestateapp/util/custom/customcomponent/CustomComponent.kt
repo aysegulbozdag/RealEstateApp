@@ -1,10 +1,9 @@
-package com.example.realestateapp.util.custom
+package com.example.realestateapp.util.custom.customcomponent
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.example.realestateapp.R
 import com.example.realestateapp.data.model.Data
 import com.example.realestateapp.databinding.CustomComponentBinding
 
@@ -24,13 +23,15 @@ class CustomComponent @JvmOverloads constructor(
     }
 
     fun setData(model: Data) = with(binding){
-        "${model.city}/${model.district}/${model.neighborhood}".also { txtAdress.text = it }
+        "${model.city}/ ${model.district}/ ${model.neighborhood}".also { txtAdress.text = it }
         " ${ model.price }₺".also { txtPrice.text = it }
         txtCreatedDate.text = model.createdDate
-        txtBath.text = model.bathCount.toString()
-        txtRoom.text=model.roomCount.toString()
+        "${model.bathCount} Banyo".also { txtBath.text = it }
+        "${model.roomCount} Oda".also { txtRoom.text = it }
         "${model.gross} brüt m2".also { txtGross.text = it }
         "${model.net} net m2".also { txtNet.text = it }
 
+        val adapter = ImageSlideAdapter(model.images)
+        viewPager.adapter = adapter
     }
 }

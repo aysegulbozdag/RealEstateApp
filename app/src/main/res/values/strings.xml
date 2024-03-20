@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">RealEstateApp</string>
     <string name="loading_data_from_remote">Please wait...</string>
+    <string name="formatted_field_text">%s m2</string>
+    <string name="formatted_price">%s₺</string>
+
 </resources>

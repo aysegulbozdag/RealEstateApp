@@ -1,5 +1,9 @@
 package com.example.realestateapp.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Data(
     val bathCount: Int,
     val buildingAge: String,
@@ -17,4 +21,4 @@ data class Data(
     val price: String,
     val room: String,
     val roomCount: Int
-)
+) : Parcelable

@@ -15,7 +15,6 @@ import com.example.realestateapp.util.base.BaseFragment
 import com.example.realestateapp.util.generic.GenericAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment() : BaseFragment<FragmentMainBinding, ViewModel>() {
@@ -23,14 +22,15 @@ class MainFragment() : BaseFragment<FragmentMainBinding, ViewModel>() {
 
     override val viewModel: MainViewModel by viewModels()
 
-   private val adapter by lazy {
+    private val adapter by lazy {
         GenericAdapter(
             viewModel,
             R.layout.rv_item,
             BaseDiffUtilItemCallback<Data>()
         ) {
             onClick { item ->
-                findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
+                val action = MainFragmentDirections.actionMainFragmentToDetailFragment(item)
+                findNavController().navigate(action)
             }
         }
     }
@@ -46,9 +46,9 @@ class MainFragment() : BaseFragment<FragmentMainBinding, ViewModel>() {
                 when (it) {
                     is NetworkResponseState.Loading -> showProgress()
                     is NetworkResponseState.Success -> {
-                        hideProgress()
                         getDataBinding().rvHouseList.adapter = adapter
                         adapter.submitList(it.result?.data)
+                        hideProgress()
                     }
 
                     is NetworkResponseState.Error -> {

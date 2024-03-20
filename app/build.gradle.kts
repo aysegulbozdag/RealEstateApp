@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
@@ -40,7 +39,12 @@ android {
 
         buildFeatures {
             dataBinding = true
+
         }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -57,27 +61,23 @@ dependencies {
 
 
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-   // implementation ("androidx.fragment:fragment-ktx:1.6.2")
-   // implementation ("androidx.activity:activity-ktx:1.8.2")
+    implementation ("androidx.fragment:fragment-ktx:1.6.2")
+    implementation ("androidx.activity:activity-ktx:1.8.2")
     implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
 
     // Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.10.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.10.0")
 
     // Gson
-    implementation ("com.google.code.gson:gson:2.10")
+    implementation ("com.google.code.gson:gson:2.10.1")
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.51")
+    kapt("com.google.dagger:hilt-android-compiler:2.51")
 
     // Navigation Component
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
-}
-
-kapt {
-    correctErrorTypes = true
 }

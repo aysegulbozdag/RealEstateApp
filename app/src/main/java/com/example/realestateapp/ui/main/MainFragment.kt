@@ -1,32 +1,66 @@
 package com.example.realestateapp.ui.main
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.realestateapp.R
+import com.example.realestateapp.data.NetworkResponseState
+import com.example.realestateapp.data.model.Data
+import com.example.realestateapp.databinding.FragmentMainBinding
+import com.example.realestateapp.util.base.BaseDiffUtilItemCallback
+import com.example.realestateapp.util.base.BaseFragment
+import com.example.realestateapp.util.generic.GenericAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainFragment : Fragment() {
+@AndroidEntryPoint
+class MainFragment() : BaseFragment<FragmentMainBinding, ViewModel>() {
+    override fun getLayoutId(): Int = R.layout.fragment_main
 
-    companion object {
-        fun newInstance() = MainFragment()
+    override val viewModel: MainViewModel by viewModels()
+
+   private val adapter by lazy {
+        GenericAdapter(
+            viewModel,
+            R.layout.rv_item,
+            BaseDiffUtilItemCallback<Data>()
+        ) {
+            onClick { item ->
+                findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
+            }
+        }
     }
 
-    private lateinit var viewModel: MainViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+    override fun onFragmentStarted() {
+        observeUIState()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
+    private fun observeUIState() {
+        lifecycleScope.launch {
+            viewModel.listState.collect {
+                when (it) {
+                    is NetworkResponseState.Loading -> showProgress()
+                    is NetworkResponseState.Success -> {
+                        getDataBinding().rvHouseList.adapter = adapter
+                        adapter.submitList(it.result?.data)
+                    }
+
+                    is NetworkResponseState.Error -> {
+                        //showProgress()
+                        hideProgress()
+                        Toast.makeText(requireContext(), it.exception, Toast.LENGTH_LONG)
+                            .show()
+                    }
+
+                    else -> Unit
+                }
+            }
+        }
+
+    }
 }

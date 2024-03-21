@@ -5,12 +5,12 @@ MVVM(Model-View-ViewModel) -> Farklı bölümlerin, farklı sorumlukluklarının
 
 ## Kullanılan Teknolojiler
 
-Kotlin -> Progralama dili.
-Retrofit -> HTTP isteğini yapmamızı sağlar.
-Coroutines -> Asenkron işlemleri yapabilmemizi sağlar.
-Lifecycle -> Başka bir bileşenin yaşam döngüsü durumundaki bir değişikliğe yanıt olarak işlemler gerçekleştirmezi sağlar.
-Dagger Hilt -> Dependecy injection yapmamızı sağlar.
-StateFlow -> State'i güncellemeyi ve yönetmemizi sağlar. 
-ViewModel -> Kullanıcı arayüzü ile ilgili verileri yönetmeyi ve tutmayı sağlar.
-Glide -> Resimleri yüklemek için kullanılan bir kütüphane.
-Flow-> Asenkron veri akışını sağlar.
+* Kotlin -> Progralama dili.
+* Retrofit -> HTTP isteğini yapmamızı sağlar.
+* Coroutines -> Asenkron işlemleri yapabilmemizi sağlar.
+* Lifecycle -> Başka bir bileşenin yaşam döngüsü durumundaki bir değişikliğe yanıt olarak işlemler gerçekleştirmezi sağlar.
+* Dagger Hilt -> Dependecy injection yapmamızı sağlar.
+* StateFlow -> State'i güncellemeyi ve yönetmemizi sağlar. 
+* ViewModel -> Kullanıcı arayüzü ile ilgili verileri yönetmeyi ve tutmayı sağlar.
+* Glide -> Resimleri yüklemek için kullanılan bir kütüphane.
+* Flow-> Asenkron veri akışını sağlar.

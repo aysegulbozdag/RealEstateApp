@@ -14,3 +14,19 @@ MVVM(Model-View-ViewModel) -> Farklı bölümlerin, farklı sorumlukluklarının
 * ViewModel -> Kullanıcı arayüzü ile ilgili verileri yönetmeyi ve tutmayı sağlar.
 * Glide -> Resimleri yüklemek için kullanılan bir kütüphane.
 * Flow-> Asenkron veri akışını sağlar.
+
+## Screenshots 
+
+<table>
+  <tr>
+    <td align="center"><img src="https://github.com/aysegulbozdag/RealEstateApp/assets/38127324/1a279b17-b31d-44a9-bb82-84518a212803" width="200"/></td>
+    <td align="center"><img src="https://github.com/aysegulbozdag/RealEstateApp/assets/38127324/d841fede-72c8-49a6-b91d-ef2912e1eefc" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center">Main List</td>
+    <td align="center">Detail List</td>
+  </tr>
+</table>
+
+
+

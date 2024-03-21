@@ -1,7 +1,6 @@
 package com.example.realestateapp.util.base
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import com.example.realestateapp.util.custom.CustomProgressDialog
 abstract class BaseFragment<DataBinding : ViewDataBinding, V : ViewModel> : Fragment() {
 
     private lateinit var dataBinding: DataBinding
-    private lateinit var progressDialog: CustomProgressDialog
+    private var progressDialog: CustomProgressDialog? = null
     abstract val viewModel: V
 
     abstract fun getLayoutId(): Int
@@ -26,7 +25,6 @@ abstract class BaseFragment<DataBinding : ViewDataBinding, V : ViewModel> : Frag
         savedInstanceState: Bundle?
     ): View? {
         dataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
-       setErrorMessage()
         return dataBinding.root
     }
 
@@ -37,23 +35,17 @@ abstract class BaseFragment<DataBinding : ViewDataBinding, V : ViewModel> : Frag
 
     fun getDataBinding() = dataBinding
 
-    fun setErrorMessage(message: String = "", isCanceled: Boolean = false){
-        progressDialog = CustomProgressDialog(message,isCanceled)
-    }
-
     fun showProgress() {
-        progressDialog.show(
+        progressDialog = CustomProgressDialog()
+        progressDialog?.show(
             requireActivity().supportFragmentManager,
             CustomProgressDialog()::class.java.name
         )
     }
 
     fun hideProgress() {
-        try {
-            progressDialog.dismiss()
-        } catch (e: Exception) {
-            Log.e("Error: ", e.message.toString())
-        }
+        if (progressDialog != null)
+            progressDialog?.dismiss()
     }
 
 

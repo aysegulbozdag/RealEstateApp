@@ -20,6 +20,9 @@ class MainViewModel @Inject constructor(private val useCase: HouseListUseCase) :
         MutableStateFlow(NetworkResponseState.Loading)
     val listState: StateFlow<NetworkResponseState<HouseList>> = _listState.asStateFlow()
 
+    var dataList = mutableListOf<Data>()
+
+
     init {
         getHouseList()
     }
@@ -38,5 +41,7 @@ class MainViewModel @Inject constructor(private val useCase: HouseListUseCase) :
         dataList.filter { item ->
             item.category.contains(query, ignoreCase = true)
         }
+
+    fun clearList() = dataList.clear()
 
 }

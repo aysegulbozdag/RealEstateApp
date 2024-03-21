@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +13,6 @@ import com.example.realestateapp.util.base.BaseDiffUtilItemCallback
 
 
 class GenericAdapter<T : Any>(
-    private val viewModel: ViewModel? = null,
     @LayoutRes val layoutId: Int,
     private val diffCallback: DiffUtil.ItemCallback<T> = BaseDiffUtilItemCallback<T>(),
     private val callBack: ViewHolder<T>.() -> Unit,
@@ -25,7 +23,7 @@ class GenericAdapter<T : Any>(
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
             layoutInflater, layoutId, viewGroup, false
         )
-        return ViewHolder<T>(binding, viewModel).apply(callBack)
+        return ViewHolder<T>(binding).apply(callBack)
     }
 
     override fun onBindViewHolder(holder: ViewHolder<T>, position: Int) {
@@ -35,8 +33,7 @@ class GenericAdapter<T : Any>(
 }
 
 class ViewHolder<T : Any>(
-    private val binding: ViewDataBinding,
-    private val viewModel: ViewModel?
+    private val binding: ViewDataBinding
 ) :
     RecyclerView.ViewHolder(binding.root) {
     private lateinit var item: T

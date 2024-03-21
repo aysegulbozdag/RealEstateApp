@@ -1,9 +1,8 @@
 package com.example.realestateapp.ui.main
 
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
@@ -24,11 +23,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, ViewModel>() {
     override fun getLayoutId(): Int = R.layout.fragment_main
 
     override val viewModel: MainViewModel by viewModels()
-    private var dataList = mutableListOf<Data>()
 
     private val adapter by lazy {
         GenericAdapter(
-            viewModel,
             R.layout.rv_item,
             BaseDiffUtilItemCallback<Data>()
         ) {
@@ -50,39 +47,28 @@ class MainFragment : BaseFragment<FragmentMainBinding, ViewModel>() {
     }
 
     private fun onTextChanged() = with(getDataBinding()) {
-        etSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if ((s.toString() == "").not()) {
-                    updateRecyclerView(s.toString())
-                } else initAdapter(dataList)
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-        })
+        etSearch.doOnTextChanged { text, start, before, count ->
+            if ((text.toString() == "").not()) {
+                updateList(text.toString())
+            } else initAdapter(viewModel.dataList)
+        }
     }
 
-    fun updateRecyclerView(query: String) {
-        val filteredList = viewModel.searchList(query, dataList)
+    private fun updateList(query: String) = with(viewModel) {
+        val filteredList = viewModel.searchList(query, viewModel.dataList)
         initAdapter(filteredList)
     }
 
 
-    private fun observeUIState() {
+    private fun observeUIState() = with(viewModel) {
         lifecycleScope.launch {
             viewModel.listState.collect {
                 when (it) {
                     is NetworkResponseState.Loading -> showProgress()
                     is NetworkResponseState.Success -> {
-                        it.result?.data?.let {
-                            dataList.addAll(it.toMutableList())
-                            initAdapter(it)
+                        it.result?.data?.let { data ->
+                            dataList.addAll(data.toMutableList())
+                            initAdapter(data)
                         }
                         hideProgress()
                     }
@@ -97,8 +83,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, ViewModel>() {
         }
 
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        dataList.clear()
+        viewModel.clearList()
     }
 }

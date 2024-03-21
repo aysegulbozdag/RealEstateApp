@@ -32,11 +32,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:textSize="15sp"
+        android:background="@drawable/bg_new_design_edittext"
         android:padding="8dp"
         android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/bg_new_design_edittext"
-        tools:text="FIRSAT"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageSlide" />
+        app:layout_constraintTop_toTopOf="@+id/imageSlide"
+        tools:text="FIRSAT" />
 </androidx.constraintlayout.widget.ConstraintLayout>

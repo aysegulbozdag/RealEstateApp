@@ -9,24 +9,14 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.realestateapp.databinding.CustomProgressDialogBinding
 
-class CustomProgressDialog() : AppCompatDialogFragment() {
-
-    private lateinit var binding: CustomProgressDialogBinding
-
-    private var mProgressContentText: String = ""
-    private var mIsProgressCancelable: Boolean = false
-
-    constructor(progressContentText: String, isDialogCancelable: Boolean) : this() {
-        this.mProgressContentText = progressContentText
-        this.mIsProgressCancelable = isDialogCancelable
-    }
+class CustomProgressDialog : AppCompatDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder: AlertDialog.Builder = AlertDialog.Builder(it)
-            binding = CustomProgressDialogBinding.inflate(LayoutInflater.from(context))
+            val binding = CustomProgressDialogBinding.inflate(LayoutInflater.from(context))
             val alertDialog = builder.setView(binding.root).create()
-            alertDialog.setCanceledOnTouchOutside(mIsProgressCancelable)
+            alertDialog.setCanceledOnTouchOutside(false)
             alertDialog.show()
             alertDialog
         } ?: throw IllegalStateException("Activity cannot be null")

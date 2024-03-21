@@ -1,4 +1,4 @@
-### Case Study 👀👩‍💻
+### Real Estate App 👀👩‍💻
 ## Mimari
 MVVM(Model-View-ViewModel) -> Farklı bölümlerin, farklı sorumlukluklarının ayrıştırmayı sağlayan mimaridir. Model'de data sağlanır, ViewModel'da business logic işleri halledilir, View'de ise UI logic kısmı yapılır.
 ![1_-yY0l4XD3kLcZz0rO1sfRA](https://github.com/aysegulbozdag/RealEstateApp/assets/38127324/665edef1-2ab8-4ff4-914c-e5c3455b063f)

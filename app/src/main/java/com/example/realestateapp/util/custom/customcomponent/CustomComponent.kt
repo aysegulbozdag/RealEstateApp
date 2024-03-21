@@ -31,7 +31,7 @@ class CustomComponent @JvmOverloads constructor(
         "${model.gross} brüt m2".also { txtGross.text = it }
         "${model.net} net m2".also { txtNet.text = it }
 
-        val adapter = ImageSlideAdapter(model.images)
+        val adapter = ImageSlideAdapter(model.images, if(model.label.isNullOrEmpty()) "" else model.label)
         viewPager.adapter = adapter
     }
 }

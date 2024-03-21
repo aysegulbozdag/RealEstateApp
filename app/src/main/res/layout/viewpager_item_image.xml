@@ -15,4 +15,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageSlide"
+        app:layout_constraintTop_toTopOf="@+id/imageSlide"
+        app:srcCompat="@drawable/fav_icon" />
+
+    <TextView
+        android:id="@+id/txtHouseStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="15sp"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimaryText"
+        android:background="@drawable/bg_new_design_edittext"
+        tools:text="FIRSAT"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageSlide" />
 </androidx.constraintlayout.widget.ConstraintLayout>

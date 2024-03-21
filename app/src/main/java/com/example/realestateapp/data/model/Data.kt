@@ -15,7 +15,7 @@ data class Data(
     val district: String,
     val gross: Int,
     val images: List<String>,
-    val label: String,
+    val label: String?,
     val neighborhood: String,
     val net: Int,
     val price: String,

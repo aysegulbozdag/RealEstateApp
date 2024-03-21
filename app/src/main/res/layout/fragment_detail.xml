@@ -11,6 +11,7 @@
         android:id="@+id/containerll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:fitsSystemWindows="true">
 
         <ImageView
@@ -76,10 +77,11 @@
             layout="@layout/detail_card_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="190dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

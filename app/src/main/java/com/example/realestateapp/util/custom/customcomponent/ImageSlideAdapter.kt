@@ -12,7 +12,7 @@ import com.example.realestateapp.databinding.ViewpagerItemImageBinding
 class ImageSlideAdapter(private val imageUrlList: List<String>, private val houseStatus: String) :
     RecyclerView.Adapter<ImageSlideAdapter.ViewPagerViewHolder>() {
 
-    inner class ViewPagerViewHolder(val binding: ViewpagerItemImageBinding) :
+    inner class ViewPagerViewHolder(private val binding: ViewpagerItemImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun setData(imageUrl: String, houseStatus: String) {

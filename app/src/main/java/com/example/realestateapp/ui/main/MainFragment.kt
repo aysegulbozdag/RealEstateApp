@@ -42,7 +42,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, ViewModel>() {
     override fun onFragmentStarted() {
         observeUIState()
         onTextChanged()
-
     }
 
     private fun initAdapter(data: List<Data>) = with(getDataBinding()) {
@@ -57,7 +56,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, ViewModel>() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString().equals("").not()) {
+                if ((s.toString() == "").not()) {
                     updateRecyclerView(s.toString())
                 } else initAdapter(dataList)
             }
@@ -97,5 +96,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, ViewModel>() {
             }
         }
 
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        dataList.clear()
     }
 }

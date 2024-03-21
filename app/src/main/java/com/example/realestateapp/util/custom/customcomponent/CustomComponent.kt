@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.example.realestateapp.data.model.Data
 import com.example.realestateapp.databinding.CustomComponentBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class CustomComponent @JvmOverloads constructor(
@@ -33,5 +34,6 @@ class CustomComponent @JvmOverloads constructor(
 
         val adapter = ImageSlideAdapter(model.images, if(model.label.isNullOrEmpty()) "" else model.label)
         viewPager.adapter = adapter
+        TabLayoutMediator(tabLayout, viewPager) { tab, position -> }.attach()
     }
 }

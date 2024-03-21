@@ -15,7 +15,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
     override fun onFragmentStarted() {
 
         getDataBinding().imageUrl = args.viewData.images[0]
-        getDataBinding().include.viewData=args.viewData
+        getDataBinding().include.viewData = args.viewData
 
 
     }

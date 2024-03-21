@@ -1,10 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
-    id("kotlin-parcelize")
     id("androidx.navigation.safeargs")
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 android {
@@ -25,8 +25,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -38,13 +37,8 @@ android {
         jvmTarget = "1.8"
     }
 
-
-        buildFeatures {
-            dataBinding = true
-
-        }
-
     buildFeatures {
+        dataBinding = true
         viewBinding = true
     }
 }
@@ -61,27 +55,25 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation ("androidx.fragment:fragment-ktx:1.6.2")
-    implementation ("androidx.activity:activity-ktx:1.8.2")
-    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
-
-
+    //ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    
     // Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.10.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.10.0")
+    implementation("com.squareup.retrofit2:retrofit:2.10.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.10.0")
+
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     // Gson
-    implementation ("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.code.gson:gson:2.10.1")
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.51")
     kapt("com.google.dagger:hilt-android-compiler:2.51")
 
     // Navigation Component
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.0")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.7.0")
-
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.0")
 }

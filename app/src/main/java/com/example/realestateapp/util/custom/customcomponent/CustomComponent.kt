@@ -23,16 +23,17 @@ class CustomComponent @JvmOverloads constructor(
         addView(binding.root)
     }
 
-    fun setData(model: Data) = with(binding){
+    fun setData(model: Data) = with(binding) {
         "${model.city}/ ${model.district}/ ${model.neighborhood}".also { txtAdress.text = it }
-        " ${ model.price }₺".also { txtPrice.text = it }
+        " ${model.price}₺".also { txtPrice.text = it }
         txtCreatedDate.text = model.createdDate
         "${model.bathCount} Banyo".also { txtBath.text = it }
         "${model.roomCount} Oda".also { txtRoom.text = it }
         "${model.gross} brüt m2".also { txtGross.text = it }
         "${model.net} net m2".also { txtNet.text = it }
 
-        val adapter = ImageSlideAdapter(model.images, if(model.label.isNullOrEmpty()) "" else model.label)
+        val adapter =
+            ImageSlideAdapter(model.images, if (model.label.isNullOrEmpty()) "" else model.label)
         viewPager.adapter = adapter
         TabLayoutMediator(tabLayout, viewPager) { tab, position -> }.attach()
     }
